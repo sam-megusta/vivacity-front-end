@@ -5,7 +5,7 @@ import applicationReducer from './slices/applicantSlice';
 
 type RootState = ReturnType<typeof store.getState>;
 
-// Combine your reducers
+// Combining reducers
 const rootReducer = combineReducers({
   applicant: applicantReducer,
 });

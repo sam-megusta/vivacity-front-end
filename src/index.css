@@ -1,5 +1,8 @@
 body {
   margin: 0;
+  background-color: #00aaff;
+  padding: 16px;
+  color: #ffffff;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -11,3 +14,57 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+img {
+  width: 400px;
+  height: 400px;
+  cursor: pointer;
+  position: center;
+  size: cover;
+  image: url(Assets/lavner.jpg);
+}
+
+.applicant-info {
+  margin-top: 20px;
+}
+
+h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+p {
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+
+.App {
+  text-align: center;
+  background-image: url(Assets/lavner.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: Arial, sans-serif;
+  color: #ffffff;
+}
+
+
+/* .heading {
+  font-size: 24px;
+  margin-bottom: 8px;
+}
+
+.paragraph {
+  font-size: 16px;
+} */
+

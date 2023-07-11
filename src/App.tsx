@@ -2,6 +2,10 @@ import React, { useState } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import EditDetailsPage from './EditDetailsPage';
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchApplicantData } from './slices/applicantSlice';
+import { RootState } from './store';
 
 interface Applicant {
   credentials: string;
@@ -27,7 +31,7 @@ const App = () => {
   
     console.log('Request body:', JSON.stringify(requestBody));
   
-    // Perform API call to update details in the server
+    // Perform API call to POST method to trigger DB Update at the backend
     fetch('http://localhost:3001/awesome/applicant/update', {
       method: 'POST',
       headers: {
@@ -39,11 +43,11 @@ const App = () => {
       .then(response => response.json())
       .then(data => {
         console.log('Fields updated successfully:', data);
-        // Perform any additional actions after updating the details
+      
       })
       .catch(error => {
         console.error('Error updating fields:', error);
-        // Handle error case
+        
       });
   };
 
@@ -102,3 +106,35 @@ const App = () => {
 };
 
 export default App;
+
+//redux integrated to include API Data
+const ApplicantInfo = () => {
+  const dispatch = useDispatch();
+  const { data, loading, error } = useSelector((state: RootState) => state.applicant);
+
+  useEffect(() => {
+    dispatch(fetchApplicantData() as any);
+  }, [dispatch]);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
+  return (
+    <div>
+      {data.map((item: { credentials: string | number | boolean | {} | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactNodeArray | React.ReactPortal | null | undefined; details: string | number | boolean | {} | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactNodeArray | React.ReactPortal | null | undefined; }, index: React.Key | null | undefined) => (
+        <div key={index}>
+          <p>
+            <strong>{item.credentials}: {item.details}</strong>
+          </p>
+        </div>
+      ))}
+    </div>
+  );
+};
+
+export {ApplicantInfo};
